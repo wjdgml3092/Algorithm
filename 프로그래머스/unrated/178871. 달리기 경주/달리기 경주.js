@@ -1,20 +1,23 @@
 function solution(players, callings) {
-    const hash = new Map();
-    
-    players.forEach((name, index) => {
-        hash.set(name, index);
-    })
-    
-    callings.forEach(item => {
-        const idx = hash.get(item);
+    let playerObj = {};
 
-        const tmp = players[idx -1];
-        players[idx -1] = players[idx];
+    for (let i = 0; i < players.length; i++) {
+        playerObj[players[i]] = i;
+    }
+
+    callings.forEach((item) => {
+        const idx = playerObj[item];
+
+        const tmp = players[idx - 1];
+        players[idx - 1] = item;
         players[idx] = tmp;
-        
-        hash.set(item, hash.get(item) - 1);
-        hash.set(tmp, hash.get(item) + 1);
-    })
-    
-    return players;
+
+        //객체 인덱스 순서 변경
+        console.log(playerObj)
+        playerObj[idx]--;
+        console.log(playerObj)
+        playerObj[players[idx]]++;
+    });
+
+  return players;
 }
