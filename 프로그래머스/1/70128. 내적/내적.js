@@ -1,9 +1,6 @@
 function solution(a, b) {
-    var answer = 0;
-    
-    a.map((item, idx) => {
-        answer += item * b[idx]
-    })
+    var answer = a.reduce((acc, cur, idx) => acc += cur*b[idx], 0)
+    return answer;
     
     return answer;
     
