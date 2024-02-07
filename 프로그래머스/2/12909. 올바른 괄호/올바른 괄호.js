@@ -1,23 +1,19 @@
 function solution(s){
-    let answer = true;
-    
+    let answer = true
     let stack = [];
-    
-    for(let i = 0; i < s.length; i++){
-        if(s[i] === '('){
-            stack.push(s[i])
+   
+    s.split('').forEach((item) => {
+        if(item === '('){
+            stack.push(item)
         }
         else{
             if(stack.length === 0){
                 answer = false
-                break;
+                return false
             }
-            else{
-                stack.pop()
-            }
-            
+            stack.pop()
         }
-    }
+    })
     
-    return stack.length === 0 && answer ? true : false;
+   return stack.length === 0 && answer ? true : false
 }
