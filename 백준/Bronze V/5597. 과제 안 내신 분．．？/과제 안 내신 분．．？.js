@@ -1,17 +1,10 @@
 const fs = require('fs')
 const filePath =
   process.platform === 'linux' ? '/dev/stdin' : './backjoon/5597_test.txt'
-const input = fs.readFileSync(filePath).toString().split('\n')
+const input = fs.readFileSync(filePath).toString().split('\n').map(Number)
 
-let arr = new Array(31).fill(0)
+let arr = Array.from({ length: 30 }, (_, idx) => idx + 1)
 
-input.forEach((item) => (arr[item] = 1))
-
-let answer = []
-for (let i = 1; i < arr.length; i++) {
-  if (arr[i] === 0) {
-    answer.push(i)
-  }
-}
+const answer = arr.filter((item) => !input.includes(item))
 
 console.log(answer.join('\n'))
